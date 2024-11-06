@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components{
+    .menu-item{
+        @apply relative flex items-end p-4 pb-1 cursor-pointer
+    }
+}
