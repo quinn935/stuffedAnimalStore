@@ -9,14 +9,27 @@
             class="absolute left-0 top-0 bg-white right-0 bottom-0 flex items-center justify-center z-50"
     />
     <form v-if="!loading" @submit.prevent="onSubmit">
-        <div class="lg:grid lg:grid-cols-2">
+        <div class="lg:grid lg:grid-cols-2 gap-6">
             <div class="lg:col-span-1">
                 <CustomInput class="mb-2" v-model="product.title" label="Product Title" />
                 <CustomInput type="select" v-model="product.category_id" :select-options="selectCategories" label="Category"></CustomInput>
                 <CustomInput type="textarea" class="mb-2" v-model="product.description" label="Description" />
                 <CustomInput type="number" class="mb-2" v-model="product.price" label="Price" prepend="$" />
+                <CustomInput type="checkbox" class="mb-2" v-model="product.hard_eyes" label="Hard Eyes" />
             </div>
-            <div class="lg:col-span-1 px-4 pt-5 pb-4">
+
+
+            <div class="lg:col-span-1">
+                <div class="lg:flex lg:gap-4">
+                    <CustomInput class="mb-2 flex-1" v-model="product.length" label="Length (inches)" />
+                    <CustomInput class="mb-2 flex-1" v-model="product.width" label="Width (inches)" />
+                </div>
+                <div class="lg:flex lg:gap-4">
+                    <CustomInput class="mb-2 flex-1" v-model="product.depth" label="Depth (inches)" />
+                    <CustomInput class="mb-2 flex-1" v-model="product.sitting_height" label="Sitting Height (inches)" />
+                </div>
+                <CustomInput class="mb-2" v-model="product.main_material" label="Main Material" />
+                <CustomInput class="mb-2" v-model="product.inner_filling_material" label="Inner Filling Material" />
                 <ImagePreview v-model="product.images"
                              v-model:deleted-images="product.deleted_images"
                              :images="product.images"/>
@@ -54,13 +67,17 @@
   const router = useRouter()
 
   const product = ref({
-      id : null,
-      title: null,
-      category_id: null,
-      images: [],
-      deleted_images: [],
-      description: null,
-      price: null
+    //   id : null,
+    //   title: null,
+    //   category_id: null,
+    //   images: [],
+    //   deleted_images: [],
+    //   description: null,
+    //   price: null,
+    //   length: null,
+    //   width: null,
+    //   depth: null,
+    //   sitting
   })
 
 const categories = computed(()=>
@@ -77,6 +94,7 @@ onMounted(()=>{
             .then(({data})=>{
                 loading.value = false
                 product.value = data
+                console.log(product.value);
        })
     }
 })
@@ -94,8 +112,7 @@ function getCategories(){
 
   function onSubmit() {
     loading.value = true
-    if (product.value.id) {
-        console.log(product.value)
+    if (product.value.slug) {
       store.dispatch('updateProduct', product.value)
         .then((response)=>{
             loading.value = false

@@ -66,7 +66,7 @@ export function getProduct({}, slug){
 
 export function updateProduct({}, product){
     console.log('from update product action', product)
-    const id = product.id
+    const slug = product.slug
     if(product.images && product.images.length){
         const form = new FormData();
         form.append('id', product.id)
@@ -78,12 +78,19 @@ export function updateProduct({}, product){
         form.append('description', product.description || '')
         form.append('price', product.price)
         form.append('category_id', product.category_id)
+        form.append('length', product.length)
+        form.append('width', product.width)
+        form.append('depth', product.depth)
+        form.append('sitting_height', product.sitting_height)
+        form.append('hard_eyes', product.hard_eyes)
+        form.append('main_material', product.main_material)
+        form.append('inner_filling_material', product.inner_filling_material)
         form.append('_method', 'PUT')
         product = form
     }else{
         product._method = 'PUT'
     }
-    return axiosClient.post(`/products/${id}`, product)
+    return axiosClient.post(`/products/${slug}`, product)
 }
 
 export function deleteProduct({}, product){

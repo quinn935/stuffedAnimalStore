@@ -1,5 +1,5 @@
 <template>
-    <div v-if="currentUser.id" class="h-screen bg-gray-200 flex">
+    <div v-if="currentUser.id" class="min-h-screen bg-gray-200 flex">
         <!-- sidebar -->
         <Sidebar :class="{'-ml-[200px]' : !sidebarOpened}"/>
         <!-- end of sidebar -->

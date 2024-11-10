@@ -18,9 +18,14 @@ window.Alpine = Alpine;
 document.addEventListener("alpine:init", () => {
 
     Alpine.data("toast", () => ({
+      init(){
+        if (this.timeout) {
+            clearTimeout(this.timeout);
+            this.timeout = null;
+          }
+      },
       visible: false,
       delay: 3000,
-      percent: 0,
       interval: null,
       timeout: null,
       message: null,
@@ -31,11 +36,6 @@ document.addEventListener("alpine:init", () => {
       show(message) {
         this.visible = true;
         this.message = message;
-
-        if (this.timeout) {
-            clearTimeout(this.timeout);
-            this.timeout = null;
-          }
 
         this.timeout = setTimeout(() => {
           this.visible = false;

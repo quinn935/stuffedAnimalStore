@@ -27,7 +27,14 @@ class ProductRequest extends FormRequest
             'images.*'=>['nullable', 'image'],
             'deleted_images.*'=>['nullable', 'numeric'],
             'price'=>['required', 'numeric'],
-            'description'=>['nullable', 'string']
+            'description'=>['nullable', 'string'],
+            'length'=>['nullable', 'string'],
+            'width'=>['nullable', 'string'],
+            'depth'=>['nullable', 'string'],
+            'sitting_height'=>['nullable', 'string'],
+            'hard_eyes'=>['nullable','boolean'],
+            'main_material'=> ['nullable','string'],
+            'inner_filling_material'=>['nullable','string']
         ];
     }
 }

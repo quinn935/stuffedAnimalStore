@@ -38,7 +38,8 @@
                x-transition
                x-cloak
                @notify.window="show($event.detail.message)"
-               class="fixed w-[400px] left-1/2 -ml-[200px] top-20 py-2 px-4 pb-4 bg-emerald-500 text-white z-10 text-center"
+               style="display:none;"
+               class="fixed w-[400px] left-1/2 -ml-[200px] top-20 py-2 px-4 pb-4 bg-cyan-400 text-white z-10 text-center"
              >
                <div class="font-semibold" x-text="message"></div>
                <button
