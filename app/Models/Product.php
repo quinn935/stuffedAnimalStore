@@ -58,4 +58,13 @@ class Product extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function reviews() : HasMany{
+        return $this->hasMany(ProductReview::class);
+    }
+
+    public function getProductAverageReviewAttribute(){
+
+        return $this->reviews->count()? round($this->reviews->sum('rating')/$this->reviews->count(), 1) : 0;
+    }
+
 }

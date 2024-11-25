@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductReview;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -20,7 +21,9 @@ class ProductController extends Controller
     }
 
     public function viewSingleProduct(Product $product){
-        return view('products.view', compact('product'));
+        $productReviews = $product->reviews;
+        $productReviewsCount = $product->reviews->count();
+        return view('products.view', compact('product', 'productReviews', 'productReviewsCount'));
     }
 
 }

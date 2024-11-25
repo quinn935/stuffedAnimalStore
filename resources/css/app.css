@@ -4,6 +4,19 @@
 
 @layer components{
     .menu-item{
-        @apply relative flex items-end p-4 pb-1 cursor-pointer
+        @apply relative flex items-end p-4 pb-1 cursor-pointer;
     }
+
+    .product-review-input{
+        @apply w-full md:w-5/6 lg:w-4/5  focus:border-cyan-400 focus:ring focus:ring-cyan-200 focus:outline-none border border-gray-300;
+    }
+
+    .primary-btn{
+        @apply bg-cyan-400 px-6 py-2 capitalize text-lg text-black hover:bg-cyan-400 hover:border border-black shadow
+    }
+
+    .white-btn{
+        @apply bg-white px-6 py-2 capitalize text-lg text-black border border-black shadow hover:bg-cyan-400 transition-colors
+    }
+
 }

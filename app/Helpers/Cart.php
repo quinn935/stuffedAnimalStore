@@ -21,13 +21,14 @@ class Cart{
         }
     }
 
+
     public static function getCartItems()
     {
         $request = \request();
         $user = $request->user();
         if($user){
             return CartItem::where('user_id', $user->id)->get()->map(
-                fn($item) => ['product_id'=>$item->product_id, 'quantity'=>$item->quantity]
+                fn($item) => ['product_id'=>$item->product_id, 'quantity'=>$item->quantity, 'price'=>$item->product->price, 'product_title'=>$item->product->title, 'product_slug'=>$item->product->slug, 'product_image'=>$item->product->getMainImageAttribute()]
             );
         }else{
             return self::getCookieCartItems();

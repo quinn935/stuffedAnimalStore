@@ -53,7 +53,11 @@ class CartController extends Controller
             }
 
 
-            return response(['count'=>Cart::getCartItemsCount()]);
+            return response([
+                'count'=>Cart::getCartItemsCount(),
+                'cart_items'=>Cart::getCartItems()
+            ],
+                200);
 
         }else{
             $cartItems = Cart::getCookieCartItems();
@@ -71,13 +75,19 @@ class CartController extends Controller
                 $cartItems[] = [
                     'product_id' => $product->id,
                     'quantity' => $quantity,
-                    'price' => $product->price
+                    'price' => $product->price,
+                    'product_title'=> $product->title,
+                    'product_slug'=>$product->slug,
+                    'product_image'=> $product->getMainImageAttribute()
                 ];
             }
 
             Cookie::queue('cart_items', json_encode($cartItems), 60*24*30);
 
-            return response(['count'=>Cart::getCountFromItems($cartItems)]);
+            return response([
+                'count'=>Cart::getCountFromItems($cartItems),
+                'cart_items'=>Cart::getCartItems()
+            ], 200);
 
         }
 
@@ -90,7 +100,10 @@ class CartController extends Controller
             if($cartItem){
                 $cartItem->delete();
             }
-            return response(['count'=>Cart::getCartItemsCount()]);
+            return response([
+                'count'=>Cart::getCartItemsCount(),
+                'cart_items'=>Cart::getCartItems()
+            ], 200);
         }else{
             $cartItems = Cart::getCookieCartItems();
             foreach($cartItems as $i=>&$cartItem){
@@ -102,7 +115,10 @@ class CartController extends Controller
 
             Cookie::queue('cart_items', json_encode($cartItems), 60*24*30);
 
-            return response(['count'=>Cart::getCountFromItems($cartItems)]);
+            return response([
+                'count'=>Cart::getCountFromItems($cartItems),
+                'cart_items'=>Cart::getCartItems()
+                ], 200);
         }
     }
 
@@ -125,7 +141,10 @@ class CartController extends Controller
 
             Cookie::queue('cart_items', json_encode($cartItems), 60*24*30);
 
-            return response(['count'=>Cart::getCountFromItems($cartItems)]);
+            return response([
+                'count'=>Cart::getCountFromItems($cartItems),
+                'cart_items'=>Cart::getCartItems()
+                ], 200);
         }
     }
 }

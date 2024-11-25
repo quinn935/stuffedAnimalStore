@@ -8,7 +8,6 @@ export function request(method, url, data={}){
         },
         ...(method==='get'? {} : {body: JSON.stringify(data)})
     }).then(async response=>{
-        console.log(response)
         if(response.status >=200 && response.status<300){
            return response.json();
         }

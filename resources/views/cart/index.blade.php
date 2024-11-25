@@ -22,7 +22,7 @@
     }"
         @cart-change.window = "cartItemsCount = $event.detail.count"
         class="container py-28 mx-auto text-gray-600 text-lg tracking-wide lg:text-xl">
-        <template x-if="cartItems.length">
+        <template x-if="cartItemsCount>0">
             <div class="">
                 <h1 class="text-center text-2xl md:text-3xl mb-4 md:mb-10 mt-2 md:mt-6">
                     Your Cart (<span x-text="cartItemsCount"></span> Items)
@@ -76,7 +76,6 @@
                                 </template>
                             </tbody>
                           </table>
-                    </template>
                     {{-- end of mobile --}}
 
 
@@ -143,7 +142,7 @@
         </template>
 
         {{-- no items in the cart --}}
-        <template x-if="!cartItems.length">
+        <template x-if="cartItemsCount === 0">
             <div class="text-center py-8 text-gray-500">
                 Your Cart is empty.
             </div>

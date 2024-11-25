@@ -1,7 +1,16 @@
 
      <x-app-layout>
+
+        {{-- banner video --}}
+        <div class="w-full h-[calc(100vh-80px)]">
+            <video class="w-full h-full object-cover aspect-video" autoplay muted loop>
+                <source src="./video/default.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        {{-- end of banner video --}}
         {{-- hero img --}}
-            <div
+            {{-- <div
                 class="h-screen min-h-[400px]">
                 <div style="background-image:  url(/img/banner-desktop.jpg)"
                  class="bg-cover bg-center w-full h-full"></div>
@@ -10,7 +19,7 @@
             class="h-screen min-h-[400px]">
             <div style="background-image: url(./img/banner-desktop2.jpg)"
             class="bg-cover bg-center bg-fixed w-full h-full"></div>
-            </div>
+            </div> --}}
 
             <section class="bg-rose-500 py-20 px-10">
                 <h1 class="font-semibold text-center tracking-widest text-rose-50 text-2xl uppercase">

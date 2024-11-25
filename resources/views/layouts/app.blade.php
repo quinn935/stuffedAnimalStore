@@ -14,7 +14,13 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased min-h-screen bg-gray-100">
+    <body class="font-sans antialiased min-h-screen bg-gray-100"  >
+        <div x-data="{visible:false}"
+             x-show="visible"
+             @open-product-review-form.window="visible=true;"
+             @remove-overlay.window="visible=false;"
+            class="fixed inset-0 bg-black bg-opacity-50 z-40"
+            style="display:none"></div>
             @include('layouts.navigation')
 
             <!-- Page Heading -->
@@ -27,7 +33,7 @@
             @endisset
 
             <!-- Page Content -->
-            <main>
+            <main class="mt-20">
                 {{ $slot }}
             </main>
 
