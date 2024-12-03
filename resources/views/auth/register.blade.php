@@ -37,42 +37,51 @@
 
         end of login form --}}
 
-        <div class="mt-20 lg:mt-36 sm:mx-auto sm:w-full sm:max-w-lg lg:max-w-2xl px-10 lg:px-20 pb-10 border-sky-300 border-4 rounded-xl shadow">
+        <div
+            class="mt-20 lg:mt-36 sm:mx-auto sm:w-full sm:max-w-lg lg:max-w-2xl px-10 lg:px-20 pb-10 border-sky-300 border-4 rounded-xl shadow">
             <h2 class="mt-10 text-left text-2xl font-bold">New Customer</h2>
-            <form method="POST" action="{{ route('register') }}" class="space-y-6">
+            @if ($errors->any())
+                <div class="text-red-500">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            <form method="POST" action="{{ route('customer.store') }}" class="space-y-6">
                 @csrf
-                   <!-- Name -->
-        {{-- <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
-        </div> --}}
                 <div>
-                    <label for="name">Username</label>
+                    <label for="name" class="capitalize">First Name</label>
                     <div class="mt-2">
-                        <input id="name" type="text" name="name" :value="old('name')" required class="block w-full mx-auto rounded-md border-1 border-blue-400 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-blue-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-300 sm:text-sm sm:leading-3">
-                        @error('name')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
+                        <input id="first_name" type="text" name="first_name" :value="old('first_name')" required
+                            class="block w-full mx-auto rounded-md border-1 border-blue-400 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-blue-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-300 sm:text-sm sm:leading-3">
+                    </div>
+                </div>
+                <div>
+                    <label for="last_name" class="capitalize">Last Name</label>
+                    <div class="mt-2">
+                        <input id="last_name" type="text" name="last_name" :value="old('last_name')" required
+                            class="block w-full mx-auto rounded-md border-1 border-blue-400 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-blue-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-300 sm:text-sm sm:leading-3">
                     </div>
                 </div>
                 <div>
                     <label for="email">Email</label>
                     <div class="mt-2">
-                        <input id="email" type="email" name="email" :value="old('email')" required class="block w-full mx-auto rounded-md border-1 border-blue-400 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-blue-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-300 sm:text-sm sm:leading-3">
-                        @error('email')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
+                        <input id="email" type="email" name="email" :value="old('email')" required
+                            class="block w-full mx-auto rounded-md border-1 border-blue-400 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-blue-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-300 sm:text-sm sm:leading-3">
                     </div>
                 </div>
                 <div>
                     <label for="password">Password</label>
                     <div class="mt-2">
-                        <input id="password" type="password" name="password" required class="block w-full mx-auto rounded-md border-1 border-blue-400 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-blue-300 placeholder:text-gray-400 ocus:ring-2 focus:ring-inset focus:ring-blue-300 sm:text-sm sm:leading-3">
+                        <input id="password" type="password" name="password" required
+                            class="block w-full mx-auto rounded-md border-1 border-blue-400 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-blue-300 placeholder:text-gray-400 ocus:ring-2 focus:ring-inset focus:ring-blue-300 sm:text-sm sm:leading-3">
                     </div>
                 </div>
                 <div class="text-center mt-4">
-                    <button type="submit" class="py-2 px-8 rounded-md bg-sky-400 border-sky-600 border-1 font-semibold text-xl leading-6 text-white hover:bg-sky-500 shadow">Register</button>
+                    <button type="submit"
+                        class="py-2 px-8 rounded-md bg-sky-400 border-sky-600 border-1 font-semibold text-xl leading-6 text-white hover:bg-sky-500 shadow">Register</button>
                 </div>
             </form>
         </div>
